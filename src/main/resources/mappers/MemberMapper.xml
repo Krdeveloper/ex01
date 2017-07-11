@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.persistence.MemberDAO">
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	<insert id="insertMember">
+		insert into tbl_member(userid, userpw, username, email)
+		values(#{userid}, #{userpw}, #{username}, #{email})
+	</insert>
+	<select id="selectByID" resultType="MemberVO">
+		select * from tbl_member where userid = #{userid}
+	</select>
+	<select id="selectByIdPw" resultType="MemberVO">
+	  	select * from tbl_member where userid = #{userid} and userpw = #{userpw}
+	</select>
+	<select id="selectAll" resultType="MemberVO">
+		select * from tbl_member;
+	</select> 
+	<update id="updateMember">
+		update tbl_member 
+		set userpw=#{userpw}, username=#{username},email=#{email}  where userid=#{userid};
+	</update>
+	<delete id="deleteMember">
+		delete from tbl_member where userid=#{userid};
+	</delete>
+	
+	<select id="login" resultType="MemberVO">
+		select * from tbl_member where userid=#{userid} and userpw=#{userpw}
+	</select>
+</mapper>
+
+
+
+
+
+
